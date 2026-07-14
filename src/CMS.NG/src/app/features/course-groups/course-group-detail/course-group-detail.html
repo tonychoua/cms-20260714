@@ -1,0 +1,41 @@
+<div class="page">
+  <div class="toolbar">
+    <span class="title">檢視課程群組</span>
+    <div class="actions">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-arrow-left"
+        label="返回"
+        class="p-button-outlined"
+        (click)="back()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-pencil"
+        label="編輯"
+        severity="success"
+        (click)="edit()"
+      ></button>
+    </div>
+  </div>
+
+  @if (group(); as g) {
+    <div class="card">
+      <h3>課程群組資料</h3>
+      <div class="grid">
+        <div class="cell">
+          <span class="label">群組代碼</span>
+          <span class="value">{{ g.pkid }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">群組說明</span>
+          <span class="value">{{ g.description }}</span>
+        </div>
+      </div>
+    </div>
+  } @else if (!loading()) {
+    <div class="card muted">查無此課程群組。</div>
+  }
+</div>

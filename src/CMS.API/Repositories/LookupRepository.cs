@@ -17,4 +17,11 @@ public class LookupRepository : ILookupRepository
         return await db.QueryAsync<AppUserLookup>(
             "SELECT UserId, UserName FROM AppUser ORDER BY UserName");
     }
+
+    public async Task<IEnumerable<CourseGroupLookup>> GetCourseGroupsAsync()
+    {
+        using var db = _connectionFactory.Create();
+        return await db.QueryAsync<CourseGroupLookup>(
+            "SELECT pkid AS Pkid, Description FROM CourseGroup ORDER BY Description");
+    }
 }

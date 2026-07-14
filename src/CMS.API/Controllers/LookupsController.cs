@@ -17,4 +17,9 @@ public class LookupsController : ControllerBase
     [HttpGet("app-users")]
     public async Task<ActionResult<IEnumerable<AppUserLookup>>> GetAppUsers()
         => Ok(await _repository.GetAppUsersAsync());
+
+    /// <summary>Slim CourseGroup list for FK dropdowns (Course / PartnerCourseGroup).</summary>
+    [HttpGet("course-groups")]
+    public async Task<ActionResult<IEnumerable<CourseGroupLookup>>> GetCourseGroups()
+        => Ok(await _repository.GetCourseGroupsAsync());
 }

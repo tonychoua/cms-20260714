@@ -1,0 +1,114 @@
+<div class="page">
+  <div class="toolbar">
+    <span class="title">課程群組 <small>CourseGroup</small></span>
+    <div class="actions">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-filter"
+        label="篩選"
+        class="p-button-outlined"
+        (click)="drawerVisible.set(true)"
+      ></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-plus"
+        label="新增"
+        severity="success"
+        (click)="add()"
+      ></button>
+    </div>
+  </div>
+
+  <p-table
+    [value]="groups()"
+    [loading]="loading()"
+    dataKey="pkid"
+    [paginator]="true"
+    [rows]="pageState.rows"
+    [first]="pageState.first"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    [sortField]="sortState.field"
+    [sortOrder]="sortState.order"
+    (onPage)="onPage($event)"
+    (onSort)="onSort($event)"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="共 {totalRecords} 筆"
+    styleClass="p-datatable-sm p-datatable-gridlines"
+  >
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="pkid" style="width: 10rem">群組代碼 <p-sortIcon field="pkid" /></th>
+        <th pSortableColumn="description">群組說明 <p-sortIcon field="description" /></th>
+        <th style="width: 12rem">操作</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-group>
+      <tr>
+        <td>{{ group.pkid }}</td>
+        <td>{{ group.description }}</td>
+        <td>
+          <div class="row-actions">
+            <button
+              pButton
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-text"
+              pTooltip="檢視"
+              (click)="view(group)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-pencil"
+              class="p-button-text"
+              pTooltip="編輯"
+              (click)="edit(group)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-text p-button-danger"
+              pTooltip="刪除"
+              (click)="remove(group)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="3" class="empty">查無資料</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-drawer [(visible)]="drawerVisible" header="篩選條件" position="right" [style]="{ width: '360px' }">
+  <div class="field">
+    <label for="f-keyword">關鍵字</label>
+    <input
+      id="f-keyword"
+      type="text"
+      pInputText
+      class="full-width"
+      placeholder="群組說明"
+      [(ngModel)]="filters.keyword"
+    />
+  </div>
+
+  <div class="drawer-actions">
+    <button
+      pButton
+      type="button"
+      label="清除"
+      class="p-button-outlined"
+      (click)="clearFilters()"
+    ></button>
+    <button pButton type="button" label="套用" severity="success" (click)="applyFilters()"></button>
+  </div>
+</p-drawer>
