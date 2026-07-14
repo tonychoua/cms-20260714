@@ -1,0 +1,34 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <i class="pi pi-database"></i>
+      <span>{{ title() }}</span>
+    </div>
+
+    <nav class="menu">
+      @for (group of navGroups; track group.label) {
+        <div class="menu-group">
+          <div class="menu-group-title">
+            <i [class]="group.icon"></i>
+            <span>{{ group.label }}</span>
+            <small>{{ group.sublabel }}</small>
+          </div>
+          @for (item of group.items; track item.route) {
+            <a class="menu-item" [routerLink]="item.route" routerLinkActive="active">
+              <i [class]="item.icon"></i>
+              <span class="menu-item-label">{{ item.label }}</span>
+              <small>{{ item.sublabel }}</small>
+            </a>
+          }
+        </div>
+      }
+    </nav>
+  </aside>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>
+
+<p-toast />
+<p-confirmdialog />
