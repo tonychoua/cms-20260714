@@ -34,5 +34,18 @@ export class App {
       icon: 'pi pi-cog',
       items: [{ label: '角色', sublabel: 'AppRole', icon: 'pi pi-users', route: '/app-roles' }],
     },
+    {
+      label: '課程管理',
+      sublabel: 'Course',
+      icon: 'pi pi-book',
+      items: [
+        {
+          label: '課程群組',
+          sublabel: 'CourseGroup',
+          icon: 'pi pi-sitemap',
+          route: '/course-groups',
+        },
+      ],
+    },
   ];
 }
