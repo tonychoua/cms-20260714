@@ -32,7 +32,15 @@ export class App {
       label: '系統管理',
       sublabel: 'Admin',
       icon: 'pi pi-cog',
-      items: [{ label: '角色', sublabel: 'AppRole', icon: 'pi pi-users', route: '/app-roles' }],
+      items: [
+        { label: '角色', sublabel: 'AppRole', icon: 'pi pi-users', route: '/app-roles' },
+        {
+          label: '發佈狀態',
+          sublabel: 'PublishStatus',
+          icon: 'pi pi-flag',
+          route: '/publish-statuses',
+        },
+      ],
     },
     {
       label: '課程管理',
@@ -45,6 +53,7 @@ export class App {
           icon: 'pi pi-sitemap',
           route: '/course-groups',
         },
+        { label: '合作夥伴', sublabel: 'Partner', icon: 'pi pi-users', route: '/partners' },
       ],
     },
   ];

@@ -1,0 +1,61 @@
+<div class="page">
+  <div class="toolbar">
+    <span class="title">檢視合作夥伴</span>
+    <div class="actions">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-arrow-left"
+        label="返回"
+        class="p-button-outlined"
+        (click)="back()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-pencil"
+        label="編輯"
+        severity="success"
+        (click)="edit()"
+      ></button>
+    </div>
+  </div>
+
+  @if (partner(); as p) {
+    <div class="card">
+      <h3>合作夥伴資料</h3>
+      <div class="grid">
+        <div class="cell">
+          <span class="label">夥伴代碼</span>
+          <span class="value">{{ p.pkid }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">名稱</span>
+          <span class="value">{{ p.name }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">應用金鑰 (AppKey)</span>
+          <span class="value">{{ p.appKey }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">顯示順序</span>
+          <span class="value">{{ p.displayOrder }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">夥伴選單顯示名稱</span>
+          <span class="value">{{ p.nameOnPartnerMenu }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">課程詳情頁顯示名稱</span>
+          <span class="value">{{ p.nameOnCourseDetailPage }}</span>
+        </div>
+        <div class="cell">
+          <span class="label">圖片檔名</span>
+          <span class="value">{{ p.imageFilename || '—' }}</span>
+        </div>
+      </div>
+    </div>
+  } @else if (!loading()) {
+    <div class="card muted">查無此合作夥伴。</div>
+  }
+</div>

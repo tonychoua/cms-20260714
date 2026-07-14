@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="page">
+    <div class="toolbar">
+      <span class="title">{{ isEdit() ? '編輯發佈狀態' : '新增發佈狀態' }}</span>
+      <div class="actions">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times"
+          label="取消"
+          class="p-button-outlined"
+          (click)="cancel()"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          icon="pi pi-check"
+          label="儲存"
+          severity="success"
+          [disabled]="saving()"
+        ></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>發佈狀態資料</h3>
+
+      <div class="field">
+        <label for="pkid">狀態代碼 <span class="required">*</span></label>
+        <p-inputNumber
+          inputId="pkid"
+          styleClass="full-width"
+          formControlName="pkid"
+          [useGrouping]="false"
+          [min]="0"
+          [max]="255"
+          placeholder="0 – 255"
+        />
+        @if (invalid('pkid')) {
+          <small class="error">狀態代碼為必填，且須介於 0 – 255</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="description">狀態說明 <span class="required">*</span></label>
+        <input
+          id="description"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="description"
+          maxlength="50"
+          placeholder="請輸入狀態說明"
+        />
+        @if (invalid('description')) {
+          <small class="error">狀態說明為必填</small>
+        }
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>狀態旗標</h3>
+
+      <div class="flags">
+        <div class="flag">
+          <p-checkbox inputId="isDraft" formControlName="isDraft" [binary]="true" />
+          <label for="isDraft">草稿</label>
+        </div>
+        <div class="flag">
+          <p-checkbox inputId="isPublished" formControlName="isPublished" [binary]="true" />
+          <label for="isPublished">已發佈</label>
+        </div>
+        <div class="flag">
+          <p-checkbox inputId="isDiscontinued" formControlName="isDiscontinued" [binary]="true" />
+          <label for="isDiscontinued">已停用</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

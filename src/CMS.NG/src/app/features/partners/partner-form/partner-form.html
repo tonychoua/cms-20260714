@@ -1,0 +1,133 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="page">
+    <div class="toolbar">
+      <span class="title">{{ isEdit() ? '編輯合作夥伴' : '新增合作夥伴' }}</span>
+      <div class="actions">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-times"
+          label="取消"
+          class="p-button-outlined"
+          (click)="cancel()"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          icon="pi pi-check"
+          label="儲存"
+          severity="success"
+          [disabled]="saving()"
+        ></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>合作夥伴資料</h3>
+
+      @if (isEdit()) {
+        <div class="field">
+          <label for="pkid">夥伴代碼</label>
+          <p-inputNumber
+            inputId="pkid"
+            styleClass="full-width"
+            formControlName="pkid"
+            [useGrouping]="false"
+          />
+        </div>
+      }
+
+      <div class="field">
+        <label for="name">名稱 <span class="required">*</span></label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="name"
+          maxlength="50"
+          placeholder="請輸入名稱"
+        />
+        @if (invalid('name')) {
+          <small class="error">名稱為必填</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="appKey">應用金鑰 (AppKey) <span class="required">*</span></label>
+        <input
+          id="appKey"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="appKey"
+          maxlength="10"
+          placeholder="最多 10 碼"
+        />
+        @if (invalid('appKey')) {
+          <small class="error">應用金鑰為必填（最多 10 碼）</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="nameOnPartnerMenu">夥伴選單顯示名稱 <span class="required">*</span></label>
+        <input
+          id="nameOnPartnerMenu"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="nameOnPartnerMenu"
+          maxlength="200"
+          placeholder="顯示於夥伴選單"
+        />
+        @if (invalid('nameOnPartnerMenu')) {
+          <small class="error">夥伴選單顯示名稱為必填</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="nameOnCourseDetailPage">課程詳情頁顯示名稱 <span class="required">*</span></label>
+        <input
+          id="nameOnCourseDetailPage"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="nameOnCourseDetailPage"
+          maxlength="50"
+          placeholder="顯示於課程詳情頁"
+        />
+        @if (invalid('nameOnCourseDetailPage')) {
+          <small class="error">課程詳情頁顯示名稱為必填</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="displayOrder">顯示順序 <span class="required">*</span></label>
+        <p-inputNumber
+          inputId="displayOrder"
+          styleClass="full-width"
+          formControlName="displayOrder"
+          [useGrouping]="false"
+          [min]="0"
+          placeholder="數字越小越前面"
+        />
+        @if (invalid('displayOrder')) {
+          <small class="error">顯示順序為必填</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="imageFilename">圖片檔名</label>
+        <input
+          id="imageFilename"
+          type="text"
+          pInputText
+          class="full-width"
+          formControlName="imageFilename"
+          maxlength="50"
+          placeholder="選填，例如 partner-logo.png"
+        />
+      </div>
+    </div>
+  </div>
+</form>

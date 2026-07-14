@@ -1,0 +1,32 @@
+.toolbar .title small {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 1.5rem 0;
+}
+
+.drawer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+:host ::ng-deep .full-width.p-select {
+  width: 100%;
+}
